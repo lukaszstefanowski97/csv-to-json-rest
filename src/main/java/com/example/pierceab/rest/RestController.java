@@ -1,6 +1,6 @@
 package com.example.pierceab.rest;
 
-import com.example.pierceab.jsonParser.JsonParser;
+import com.example.pierceab.fileUtils.JsonParser;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,11 +15,19 @@ public class RestController {
 
     @GetMapping("/attributes")
     public String exposeAttributes() throws Exception {
-        return JsonParser.parseJson("data/attributes.csv", "data/attributes.json");
+        JsonParser.writeJsonToFile("data/attributes.csv", "data/attributes.json");
+        return JsonParser.readJsonContent("data/attributes.json");
     }
 
     @GetMapping("/options")
     public String exposeOptions() throws Exception {
-        return JsonParser.parseJson("data/options.csv", "data/options.json");
+        JsonParser.writeJsonToFile("data/options.csv", "data/options.json");
+        return JsonParser.readJsonContent("data/options.json");
+    }
+
+    @GetMapping("/merged")
+    public String exposeMergedCSV() throws Exception {
+        return JsonParser.parseMergedJson("data/attributes.csv", "data/options.csv",
+                "data/attributes.json", "data/options.json");
     }
 }
