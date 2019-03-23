@@ -10,13 +10,20 @@
 
 **Creation of project environment**
 
-1. Please install csvtojson package. You can do it by typing:
+1. Please install csvtojson package. You can do it by typing commands below in your project root directory:
 
     
         npm i -g csvtojson
-    
-    
+        
         In some cases you may need sudo option.
+        
+   Then please generate json files by typing:
+        
+        csvtojson data/attributes.csv > data/attributes.json
+    
+        csvtojson data/options.csv > data/options.json
+        
+ 
     
 
 

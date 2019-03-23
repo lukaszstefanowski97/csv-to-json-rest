@@ -14,20 +14,17 @@ public class RestController {
     }
 
     @GetMapping("/attributes")
-    public String exposeAttributes() throws Exception {
-        JsonParser.writeJsonToFile("data/attributes.csv", "data/attributes.json");
-        return JsonParser.readJsonContent("data/attributes.json");
+    public String exposeAttributes() {
+        return JsonParser.readJsonContent("data/attributes.json", 0);
     }
 
     @GetMapping("/options")
-    public String exposeOptions() throws Exception {
-        JsonParser.writeJsonToFile("data/options.csv", "data/options.json");
-        return JsonParser.readJsonContent("data/options.json");
+    public String exposeOptions() {
+        return JsonParser.readJsonContent("data/options.json", 0);
     }
 
     @GetMapping("/merged")
-    public String exposeMergedCSV() throws Exception {
-        return JsonParser.parseMergedJson("data/attributes.csv", "data/options.csv",
-                "data/attributes.json", "data/options.json");
+    public String exposeMergedCSV() {
+        return JsonParser.parseMergedJson("data/attributes.json", "data/options.json");
     }
 }
