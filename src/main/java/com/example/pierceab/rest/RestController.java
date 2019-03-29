@@ -8,7 +8,13 @@ import java.util.LinkedList;
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
 
-    ObjectGetterService objectGetterService;
+    private ObjectGetterService objectGetterService;
+
+    @GetMapping("/")
+    public String sayHello() {
+        return "Hello Pierce!\n\n" +
+                "Please visit localhost:8080/mergedCSV";
+    }
 
     @GetMapping("/mergedCSV")
     public LinkedList<Attribute> exposeMergedCSV() {

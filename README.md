@@ -3,29 +3,11 @@
 
 
 **PREREQUISITES:**
-- [Node.js](https://nodejs.org/en/)
-- [csvtojson](https://www.npmjs.com/package/csvtojson)
-- Java
+- Java 8 or higher
+- Spring
 - Maven
 
 **Creation of project environment**
-
-1. Please install csvtojson package. You can do it by typing commands below in your project root directory:
-
-    
-        npm i -g csvtojson
-        
-        In some cases you may need sudo option.
-        
-   Then please generate json files by typing:
-        
-        csvtojson data/attributes.csv > data/attributes.json
-    
-        csvtojson data/options.csv > data/options.json
-        
- 
-    
-
 
 2. Build your Maven project by typing:
     
@@ -33,15 +15,11 @@
         mvn install
 
 
-
 If everything went properly you should be able to run Spring application.
 
-CSV files are located in /data directory. Each of them is exposed on localhost:8080 alongside with json file created by merging them.
+CSV files are located in /src/main/resources directory. Each of them is exposed on localhost:8080 as a json file created by merging them.
 
 
-        http://localhost:8080/attributes
+        http://localhost:8080/mergedCSV
         
-        http://localhost:8080/options
-        
-        http://localhost:8080/merged
 

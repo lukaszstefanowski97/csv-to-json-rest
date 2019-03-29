@@ -36,7 +36,7 @@ public class Attribute {
     LinkedList<Option> optionList;
 
     public Attribute(Map<String, String> jsonContent) {
-        for (Map.Entry<String, String> record: jsonContent.entrySet()) {
+        for (Map.Entry<String, String> record : jsonContent.entrySet()) {
             if (record.getKey().equals("code")) this.code = record.getValue();
             if (record.getKey().matches("label")) labelMap.put(record.getKey(), record.getValue());
         }

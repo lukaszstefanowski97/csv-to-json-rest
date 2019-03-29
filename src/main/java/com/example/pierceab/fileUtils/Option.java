@@ -2,11 +2,18 @@ package com.example.pierceab.fileUtils;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 import java.util.HashMap;
 import java.util.Map;
 
+@Entity
+@Data
+@NoArgsConstructor
+@Slf4j
 public class Option {
 
     @Id
@@ -28,10 +35,10 @@ public class Option {
 
     @JsonBackReference
     @ManyToOne
-    Attribute attributeReferance;
+    Attribute attributeReference;
 
-    public Option (Map<String, String> jsonContent, Attribute attributeReferance) {
-        this.attributeReferance = attributeReferance;
+    public Option(Map<String, String> jsonContent, Attribute attributeReferance) {
+        this.attributeReference = attributeReferance;
 
         for (Map.Entry<String, String> record : jsonContent.entrySet()) {
             if (record.getKey().equals("code")) this.code = record.getValue();

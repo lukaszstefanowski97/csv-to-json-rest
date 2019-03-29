@@ -7,6 +7,7 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.net.URL;
 
 @Component
@@ -23,12 +24,20 @@ public class ApplicationEvent implements ApplicationListener<ApplicationReadyEve
 
         if (options != null) {
             String optionsPath = options.getPath();
-            objectSaverService.saveOption(optionsPath);
+            try {
+                objectSaverService.saveOption(optionsPath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else log.info("Options file not found");
 
         if (attributes != null) {
             String attributesPath = attributes.getPath();
-            objectSaverService.saveAttribute(attributesPath);
+            try {
+                objectSaverService.saveAttribute(attributesPath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else log.info("Attributes file not found");
     }
 }
