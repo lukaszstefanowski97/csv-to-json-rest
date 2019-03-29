@@ -9,7 +9,7 @@
 
 **Creation of project environment**
 
-2. Build your Maven project by typing:
+Build your Maven project by typing:
     
     
         mvn install
