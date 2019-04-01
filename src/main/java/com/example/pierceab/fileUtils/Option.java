@@ -24,7 +24,7 @@ public class Option {
     String code;
 
     @JsonProperty("label")
-    @OneToMany
+    @ElementCollection
     Map<String, String> labelMap = new HashMap<>();
 
     @JsonProperty("attribute")
@@ -38,6 +38,7 @@ public class Option {
     Attribute attributeReference;
 
     public Option(Map<String, String> jsonContent, Attribute attributeReferance) {
+        this.id = id;
         this.attributeReference = attributeReferance;
 
         for (Map.Entry<String, String> record : jsonContent.entrySet()) {

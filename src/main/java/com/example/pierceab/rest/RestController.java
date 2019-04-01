@@ -13,7 +13,7 @@ public class RestController {
     @GetMapping("/")
     public String sayHello() {
         return "Hello Pierce!\n\n" +
-                "Please visit localhost:8080/mergedCSV";
+                "Please visit localhost:8080/mergedCSV to see merged .csv files.";
     }
 
     @GetMapping("/mergedCSV")

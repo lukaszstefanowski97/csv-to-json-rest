@@ -11,9 +11,7 @@ import org.springframework.stereotype.Component;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 
@@ -27,7 +25,7 @@ public class ObjectSaverServiceImpl implements ObjectSaverService {
     private static Options options;
 
     @Override
-    public LinkedList<Map<String, String>> csvContent(String filePath) throws IOException {
+    public List<Map<String, String>> csvContent(String filePath) throws IOException {
         LinkedList<Map<String, String>> csvContent = new LinkedList<>();
         LinkedList<String> labelList = new LinkedList<>();
         String[] rows;
@@ -52,20 +50,21 @@ public class ObjectSaverServiceImpl implements ObjectSaverService {
 
     @Override
     public void saveAttribute(String attributesPath) throws IOException {
-        LinkedList<Map<String, String>> records = csvContent(attributesPath);
-        LinkedList<Attribute> attributesList = new LinkedList<>();
+        List<Map<String, String>> records = csvContent(attributesPath);
+        List<Attribute> attributesList = new ArrayList<>();
 
-        for (Map<String, String> record : records) {
-            attributesList.add((Attribute) record);
+        for (Map<String, String> record: records) {
+            attributesList.add(new Attribute(record));
         }
+
         attributes.saveAll(attributesList);
     }
 
     @Override
     public void saveOption(String optionsPath) throws IOException {
-        LinkedList<Map<String, String>> records = csvContent(optionsPath);
-        LinkedList<Option> optionsList = new LinkedList<>();
-        LinkedList<Attribute> attributesList = (LinkedList<Attribute>) attributes.findAll();
+        List<Map<String, String>> records = csvContent(optionsPath);
+        List<Option> optionsList = new ArrayList<>();
+        List<Attribute> attributesList = attributes.findAll();
 
         IntStream.range(0, optionsList.size()).forEach(index -> {
             if (attributesList.get(index) != null) {

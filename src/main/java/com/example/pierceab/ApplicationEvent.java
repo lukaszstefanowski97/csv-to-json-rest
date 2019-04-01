@@ -22,15 +22,6 @@ public class ApplicationEvent implements ApplicationListener<ApplicationReadyEve
         URL options = ApplicationEvent.class.getClassLoader().getResource("options.csv");
         URL attributes = ApplicationEvent.class.getClassLoader().getResource("attributes.csv");
 
-        if (options != null) {
-            String optionsPath = options.getPath();
-            try {
-                objectSaverService.saveOption(optionsPath);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else log.info("Options file not found");
-
         if (attributes != null) {
             String attributesPath = attributes.getPath();
             try {
@@ -39,5 +30,14 @@ public class ApplicationEvent implements ApplicationListener<ApplicationReadyEve
                 e.printStackTrace();
             }
         } else log.info("Attributes file not found");
+
+        if (options != null) {
+            String optionsPath = options.getPath();
+            try {
+                objectSaverService.saveOption(optionsPath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else log.info("Options file not found");
     }
 }
